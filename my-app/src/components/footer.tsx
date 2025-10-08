@@ -30,7 +30,7 @@ export default function Footer() {
                 <span className="mx-[3px] block h-[2px] w-3 bg-black/90" />
                 <span className="block h-[2px] w-3 translate-y-[3px] bg-black/90" />
               </span>
-              <span className="text-[20px] font-semibold tracking-[-0.02em] text-foreground">CoreEd</span>
+              <span className="text-[20px] font-semibold tracking-[-0.02em] text-foreground">CoreHive</span>
             </a>
             <p className="mt-4 text-sm text-[color:oklch(0.708_0_0)]">
               Marketplace for vetted AI Agents and Developers. Hire talent, post jobs, and launch projects with agentic

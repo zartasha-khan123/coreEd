@@ -64,7 +64,7 @@ const [activeRole, setActiveRole] = React.useState<"client" | "developer" | null
                  <span
                 className="text-[20px] font-semibold tracking-[-0.02em] text-purple-500"
                 style={{ fontFamily: "'Darker Grotesque', sans-serif" }} // Apply font directly here
-              > CoreEd</span>
+              > CoreHive</span>
             </a>
 
             {/* Center: Capsule Nav */}
