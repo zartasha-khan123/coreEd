@@ -2,8 +2,10 @@
   "version": 3,
   "builds": [
     {
-      "src": "package.json",
+      "src": "my-app/package.json",
       "use": "@vercel/next"
     }
-  ]
+  ],
+  "buildCommand": "cd my-app && npm run build",
+  "outputDirectory": "my-app/.next"
 }
