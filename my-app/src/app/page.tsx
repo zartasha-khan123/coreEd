@@ -9,6 +9,25 @@ import { GeometricBackground } from "@/components/background3d";
 import { profiles } from "@/services/profileCard";
 import { ProfileCard } from "@/components/profileCard";
 import { useRouter } from "next/navigation";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import {
+  faGithub,
+  faDocker,
+  faSlack,
+  faTrello,
+  faGoogle,
+  faJira,
+  faBitbucket,
+  faMicrosoft,
+    
+} from '@fortawesome/free-brands-svg-icons';
+import {
+  faTasks,         
+  faClipboardList, 
+  faDatabase,   
+  faTable         
+} from '@fortawesome/free-solid-svg-icons';
 
 export default function Page() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -26,21 +45,7 @@ export default function Page() {
     console.log("Search term: ", searchTerm);
   };
 
-  // ✅ Add this line so your filtered results actually work:
-  // const filtered = agents.filter((agent) => {
-  //   const inName = agent.name.toLowerCase().includes(searchTerm.toLowerCase());
-  //   const inDescription = agent.description
-  //     ?.toLowerCase()
-  //     .includes(searchTerm.toLowerCase());
-  //   const inDeveloper = agent.developer?.name
-  //     ?.toLowerCase()
-  //     .includes(searchTerm.toLowerCase());
-  //   const inWorkflows = agent.videos?.some((video) =>
-  //     video.title.toLowerCase().includes(searchTerm.toLowerCase())
-  //   );
-
-  //   return inName || inDescription || inDeveloper || inWorkflows;
-  // });
+ 
  const filtered = agents.filter((agent) => {
     const q = searchTerm.toLowerCase();
     const inName = agent.name.toLowerCase().includes(q);
@@ -93,53 +98,6 @@ return (
           <h2 className="mx-auto mt-3 max-w-[820px] text-[18px] leading-relaxed text-slate-400 md:mt-4 transition-all duration-500 hover:animate-bounce ease-in-out">
             Discover powerful AI agents tailored to your specific tasks and goals.
           </h2>
-
-          {/* Search Bar */}
-          {/* <form
-            className="mx-auto mt-8 w-full max-w-[920px] md:mt-10"
-            onSubmit={handleSearchSubmit}
-          >
-            <div className="flex items-center justify-between rounded-[18px] bg-[#1f2632] p-2 ring-1 ring-black/20 shadow-lg ">
-              {/* Input + icon 
-              <div className="flex min-w-0 flex-1 items-center gap-3 px-3 py-2 md:px-5 md:py-3 ">
-                {/* Outer + inner bullet styled like the field icon 
-                <span className="relative inline-flex h-6 w-6 items-center justify-center" >
-                  <span className="absolute h-6 w-6 rounded-full border border-slate-500"  style={{
-      borderColor: searchTerm ? "#7e22ce" : "rgb(100,116,139)",
-    }} />
-                  <span className="relative h-2 w-2 rounded-full"
-    style={{
-      backgroundColor: searchTerm ? "#7e22ce" : "rgb(148,163,184)",
-    }} />
-                </span>
-                <input
-                  type="text"
-                  value={searchTerm}
-                  onChange={handleSearchChange}
-                  placeholder="Search for an AI agent by task or goal..."
-                  className="w-full min-w-0 bg-transparent text-[16px] text-slate-300 placeholder:text-slate-500 focus:outline-none rounded-md py-2 px-4 focus:ring-2 focus:ring-[#bb50c9] transition-all duration-300"
-                />
-              </div>
-
-              
-              <button
-  type="submit"
-  className="ml-2 inline-flex items-center gap-2 rounded-[14px] px-5 py-3 text-[16px] font-medium shadow-xl hover:opacity-95 focus-visible:opacity-95"
-  style={{
-    background: "linear-gradient(to bottom right, #a78bfa, #7e22ceff)",
-    color: "#ffffff",
-  }}
-  aria-label="Search"
->
-  <Search className="h-5 w-5" style={{ color: "#ffffff" }} />
-  Search
-</button>
-
-
-              
-            </div>
-          </form> */}
-
 
           <form
   className="mx-auto mt-8 w-full max-w-[920px] md:mt-10"
@@ -195,33 +153,7 @@ return (
       Search Results for "{searchTerm}"
     </h2>
 
-    {/* {filtered.length > 0 ? (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filtered.map((agent) => (
-          <div key={agent.id} className="p-4 rounded-md bg-[#2a2f3a] shadow">
-            <h3 className="text-white font-medium">{agent.name}</h3>
-            <p className="text-slate-400 text-sm">
-              {agent.description}
-            </p>
-            <p className="text-slate-300 text-xs mt-2">
-              Developer: {agent.developer?.name}
-            </p>
-            {agent.videos?.length > 0 && (
-              <ul className="mt-2 text-xs text-slate-400">
-                {agent.videos.map((video, i) => (
-                  <li key={i}>• {video.title}</li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))}
-      </div>
-    ) : (
-      <p className="text-slate-500">No matching results.</p>
-    )}
-  </div>
-)}
-*/}
+   
 
  {filtered.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -250,48 +182,95 @@ return (
           )}
         </div>
       )}
-
         </div> 
-
-
       </section>
 
-  
-      
-  {/* Hero Section */}
-      <section className="border-b border-border px-6 py-20 md:py-32 relative"
-  style={{
-    backgroundImage:
-      "linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('/bg1.jpg')",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    opacity:0.8
 
-    
-  }}
-  >
-    <div className="mx-auto max-w-7xl">
-    
+  <section
+      className="border-b border-border px-6 py-20 md:py-32 relative"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('/bg1.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        opacity: 0.8,
+      }}
+    >
+      <div className="mx-auto max-w-7xl">
+        {/* Hero Text */}
+        <h1 className="animate-fade-in-up text-center text-4xl font-bold leading-tight text-balance md:text-5xl lg:text-6xl transition-colors duration-500 hover:text-purple-300">
+          Transform Your Workflow with AI Agents
+        </h1>
+        <p className="mx-auto mt-6 max-w-2xl text-center text-lg md:text-xl leading-relaxed text-purple-600 drop-shadow-lg">
+          Discover powerful AI agents designed to automate tasks, boost productivity, and revolutionize the way you work.
+        </p>
+      </div>
 
-          <h1
-  className="animate-fade-in-up text-center text-4xl font-bold leading-tight text-balance md:text-5xl lg:text-6xl transition-colors duration-500 hover:text-purple-300"
->
-  Transform Your Workflow with AI Agents
-</h1>
+      {/* Scrolling Logos Section - Attached at the Bottom */}
+      <div className="absolute bottom-0 left-0 right-0 py-8 bg-gradient-to-t from-black to-transparent">
+        <div className="container mx-auto px-6">
+          <div className="flex items-center justify-between overflow-hidden space-x-16">
+            {/* Scrolling container */}
+            <div className="animate-marquee flex space-x-16 sm:space-x-12 md:space-x-14 lg:space-x-16">
+              {/* Workflow and Marketplace Icons with Text */}
+              <div className="flex items-center space-x-2">
+                <FontAwesomeIcon icon={faGithub} className="icon h-20 sm:h-16 md:h-20 lg:h-24 text-gray-900" />
+                <span className="text-white">GitHub</span>
+              </div>
 
-         
+              <div className="flex items-center space-x-2">
+                <FontAwesomeIcon icon={faDocker} className="icon h-20 sm:h-16 md:h-20 lg:h-24 text-blue-600" />
+                <span className="text-white">Docker</span>
+              </div>
 
-         <p className="mx-auto mt-6 max-w-2xl text-center text-lg md:text-xl leading-relaxed text-purple-600 drop-shadow-lg">
-  Discover powerful AI agents designed to automate tasks, boost productivity, and revolutionize the way you work.
-</p>
+              <div className="flex items-center space-x-2">
+                <FontAwesomeIcon icon={faSlack} className="icon h-20 sm:h-16 md:h-20 lg:h-24 text-purple-600" />
+                <span className="text-white">Slack</span>
+              </div>
 
+              <div className="flex items-center space-x-2">
+                <FontAwesomeIcon icon={faTrello} className="icon h-20 sm:h-16 md:h-20 lg:h-24 text-blue-500" />
+                <span className="text-white">Trello</span>
+              </div>
 
-        </div>
-      </section>
+              <div className="flex items-center space-x-2">
+                <FontAwesomeIcon icon={faTasks} className="icon h-20 sm:h-16 md:h-20 lg:h-24 text-orange-500" />
+                <span className="text-white">Asana</span> {/* Asana Alternative */}
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <FontAwesomeIcon icon={faGoogle} className="icon h-20 sm:h-16 md:h-20 lg:h-24 text-red-600" />
+                <span className="text-white">Google</span>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <FontAwesomeIcon icon={faJira} className="icon h-20 sm:h-16 md:h-20 lg:h-24 text-gray-700" />
+                <span className="text-white">Jira</span>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <FontAwesomeIcon icon={faBitbucket} className="icon h-20 sm:h-16 md:h-20 lg:h-24 text-blue-200" />
+                <span className="text-white">Bitbucket</span>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <FontAwesomeIcon icon={faMicrosoft} className="icon h-20 sm:h-16 md:h-20 lg:h-24 text-green-500" />
+                <span className="text-white">Microsoft</span>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <FontAwesomeIcon icon={faDatabase} className="icon h-20 sm:h-16 md:h-20 lg:h-24 text-purple-700" />
+                <span className="text-white">Airtable</span> {/* Airtable Alternative */}
+              </div>
+              </div>
+              </div>
+              </div>
+              </div>
+              </section>
 
       {/* Agents Grid */}
-      <section className="px-6 py-16 md:py-24">
+      <section id="agents" className="px-6 py-16 md:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12">
             <h2 className="text-3xl font-bold text-foreground">Featured AI Agents</h2>
@@ -334,10 +313,10 @@ return (
 
       </section>
     </main>
-     <main className="min-h-screen relative">
+     <main id="profile" className="min-h-screen relative">
       <GeometricBackground />
 
-      <div className="container mx-auto px-4 py-16">
+      <div id="profile"className="container mx-auto px-4 py-16" >
         {/* Header */}
         <div className="text-center mb-16 space-y-4">
           <h1 className="text-5xl md:text-6xl font-bold text-balance bg-gradient-to-r from-primary via-foreground to-secondary bg-clip-text text-transparent">
@@ -356,7 +335,6 @@ return (
         </div>
       </div>
     </main>
-   
     </>
   );
 } 

@@ -618,6 +618,8 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+
+
 /* ---------- Base layer ---------- */
 @layer base {
   * {
@@ -626,4 +628,58 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+
+
+
+
+
+.icon {
+  height: 2rem !important;  /* Force icon height to 5rem (80px) */
+  width: 2rem !important;   /* Force icon width to 5rem (80px) */
+}
+
+@media (min-width: 768px) {
+  .icon {
+    height: 3rem !important;  /* For larger screens (Tablets, Desktops) */
+    width: 3rem !important;   /* For larger screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  .icon {
+    height: 3rem !important;  /* For even larger screens (Desktops) */
+    width: 3rem !important;   /* For even larger screens */
+  }
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out forwards;
 }

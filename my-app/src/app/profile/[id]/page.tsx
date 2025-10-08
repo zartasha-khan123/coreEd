@@ -129,7 +129,7 @@ export default function ProfilePage({ params }: ProfilePageProps) {
     <main className="min-h-screen bg-gray-950 text-gray-100">
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Back */}
-        <Link href="/">
+        <Link href="/#profile">
           <Button
             variant="ghost"
             className="mb-6 text-gray-300 hover:bg-gray-900/60 bg-gray-800"
@@ -176,7 +176,7 @@ export default function ProfilePage({ params }: ProfilePageProps) {
                     <Badge
                       key={s}
                       variant="secondary"
-                      className="px-3 py-1 text-sm bg-gray-800 text-purple-500 border border-gray-700"
+                      className="px-3 py-1 text-sm bg-gray-800 text-white border border-purple-700 cursor-pointer hover:bg-purple-800 transition-colors"
                     >
                       {s}
                     </Badge>
@@ -430,6 +430,7 @@ export default function ProfilePage({ params }: ProfilePageProps) {
                   className="bg-purple-600 hover:bg-purple-700 text-white"
                 >
                   Post Review
+                  
                 </Button>
                 <Button
                   type="button"

@@ -9,7 +9,7 @@ export default function ProductsLayout({ children }: { children: React.ReactNode
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           <Link
             href="/"
-className="flex items-center gap-2 text-medium font-bold text-muted-foreground hover:text-foreground transition-colors"
+            className="flex items-center gap-2 text-medium font-bold text-foreground hover:text-primary hover transition-colors hover:bg-secondary"
           >
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />

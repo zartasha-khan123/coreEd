@@ -107,7 +107,7 @@ export default function AgentDetailsPage({ agentId  }: AgentDetailsPageProps) {
             </CardTitle>
           </CardHeader>
           <CardContent className="flex gap-3">
-            <Link href="/">
+            <Link href="/products">
               <Button variant="default" className="gap-2">
                 <ArrowLeft className="h-4 w-4" />
                 Back to Agents
@@ -143,7 +143,7 @@ export default function AgentDetailsPage({ agentId  }: AgentDetailsPageProps) {
       {/* Top bar */}
       <header className="sticky top-0 z-30 border-b border-white/10 bg-[#0b0616]/70 supports-[backdrop-filter]:backdrop-blur">
         <div className="mx-auto max-w-7xl px-4 md:px-6 py-3 flex items-center justify-between">
-          <Link href="/" className="shrink-0">
+          <Link href="/products" className="shrink-0">
             <Button variant="ghost" size="sm" className="gap-2 text-white">
               <ArrowLeft className="h-4 w-4" />
               Back to Agents
@@ -219,42 +219,6 @@ export default function AgentDetailsPage({ agentId  }: AgentDetailsPageProps) {
                 <p className="mt-3 text-white/70 leading-relaxed">
                   {agent.description}
                 </p>
-
-                {/* Quick Stats (hero under title) */}
-                {/* <div className="flex flex-wrap gap-6 pt-4">
-                  <div className="flex items-center gap-2">
-                    <div className="flex size-10 items-center justify-center rounded-lg bg-[#7c3aed]/20">
-                      <Users className="size-5 text-[#a78bfa]" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium">12.5K+</div>
-                      <div className="text-xs text-white/60">Active Users</div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <div className="flex size-10 items-center justify-center rounded-lg bg-fuchsia-500/20">
-                      <Zap className="size-5 text-fuchsia-400" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium">98%</div>
-                      <div className="text-xs text-white/60">Satisfaction</div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <div className="flex size-10 items-center justify-center rounded-lg bg-green-500/20">
-                      <CheckCircle2 className="size-5 text-green-400" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium">500K+</div>
-                      <div className="text-xs text-white/60">
-                        Designs Created
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                 */}
               </div>
             </div>
 
@@ -390,73 +354,7 @@ export default function AgentDetailsPage({ agentId  }: AgentDetailsPageProps) {
         </div>
       </section>
 
-      {/* Video Gallery *
-      {agent.videos?.length > 0 && (
-        <section className="mx-auto max-w-7xl px-4 md:px-6 mt-10">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold">Featured Videos</h2>
-            <p className="text-sm text-white/60">Click a thumbnail to play</p>
-          </div>
-
-          <div className="relative mt-4">
-            <div className="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-transparent to-[#0b0616]" />
-            <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-transparent to-[#0b0616]" />
-
-            <div className="flex gap-2 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-white/20">
-              {agent.videos.map(
-                (
-                  video: {
-                    thumbnail: string;
-                    url: string;
-                    title?: string;
-                    duration?: string;
-                  },
-                  index: number
-                ) => (
-                  <Card
-                    key={index}
-                    className={`flex-shrink-0 w-[18rem] snap-start overflow-hidden transition-all hover:shadow-lg ${glass} ${purpleRing}`}
-                  >
-                    <CardContent className="p-0">
-                      <button
-                        className="relative aspect-video w-full"
-                        onClick={() => setSelectedVideo(video.url)}
-                        aria-label={`Play demo video ${index + 1}`}
-                      >
-                        <Image
-                          src={video.thumbnail}
-                          alt={video.title || `Demo video ${index + 1}`}
-                          fill
-                          sizes="(max-width: 768px) 100vw, 320px"
-                          className="object-cover"
-                        />
-                        <div className="absolute inset-0 bg-black/30 opacity-0 hover:opacity-100 transition grid place-items-center">
-                          <PlayCircle className="h-12 w-12 text-white drop-shadow" />
-                        </div>
-                        {video.duration && (
-                          <span className="absolute bottom-2 right-2 text-[11px] font-medium bg-black/70 text-white px-1.5 py-0.5 rounded">
-                            {video.duration}
-                          </span>
-                        )}
-                      </button>
-                      {(video.title || video.duration) && (
-                        <div className="px-3 py-2">
-                          <p className="text-sm font-medium truncate">
-                            {video.title || `Demo ${index + 1}`}
-                          </p>
-                          <p className="text-xs text-white/60">
-                            {video.duration ? `${video.duration}` : "Preview"}
-                          </p>
-                        </div>
-                      )}
-                    </CardContent>
-                  </Card>
-                )
-              )}
-            </div>
-          </div>
-        </section>
-      )}*/}
+    
 
       {/* Video Gallery */}
 {agent.videos?.length > 0 && (
@@ -529,9 +427,41 @@ export default function AgentDetailsPage({ agentId  }: AgentDetailsPageProps) {
   </section>
 )}
 
+{/* Agent Description Section */}
+{agent.fullDescription && (
+  <section className="mx-auto max-w-7xl px-4 md:px-6 mt-16 pb-20">
+    <Card
+      className={`${glass} ${purpleRing} relative overflow-hidden transition-all duration-500 hover:shadow-purple-700/30 hover:shadow-lg`}
+    >
+      {/* Background subtle glow */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-transparent pointer-events-none" />
+
+      <CardHeader className="relative flex flex-col items-start space-y-3">
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-6 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full" />
+          <CardTitle className="text-2xl md:text-3xl font-semibold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            About This Agent
+          </CardTitle>
+        </div>
+        <p className="text-sm text-white/60">
+          A deeper look into how this AI agent works and what makes it unique.
+        </p>
+      </CardHeader>
+
+      <CardContent className="relative">
+        <div
+          className="prose prose-invert max-w-none text-white/85 leading-relaxed text-base md:text-lg space-y-4 animate-fadeIn"
+          style={{ animationDelay: "0.2s", animationDuration: "0.8s" }}
+        >
+          <p>{agent.fullDescription}</p>
+        </div>
+      </CardContent>
+    </Card>
+  </section>
+)}
       {/* Features */}
       {agent.features?.length > 0 && (
-        <section className="mx-auto max-w-7xl px-4 md:px-6 mt-10 pb-16">
+        <section className="mx-auto max-w-7xl px-4 md:px-6  pb-16 ">
           <Card className={`${glass} ${purpleRing}`}>
             <CardHeader>
               <CardTitle className="text-white">Key Features</CardTitle>
@@ -569,34 +499,7 @@ export default function AgentDetailsPage({ agentId  }: AgentDetailsPageProps) {
         </section>
       )}
 
-      {/* Video Modal */}
-      {/* {selectedVideo && (
-        <div
-          ref={dialogRef}
-          className="fixed inset-0 z-50 grid place-items-center bg-black/80 p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Demo video"
-        >
-          <div className="relative w-full max-w-4xl">
-            <button
-              onClick={() => setSelectedVideo(null)}
-              className="absolute -top-10 right-0 text-white/90 hover:text-white transition"
-              aria-label="Close"
-              title="Close"
-            >
-              <X className="h-7 w-7" />
-            </button>
-            <video
-              src={selectedVideo}
-              controls
-              autoPlay
-              className="w-full rounded-xl shadow-2xl ring-1 ring-white/10"
-            />
-          </div>
-        </div> 
-      )}*/}
-
+   
      {selectedVideo && (
   <div
     className="fixed inset-0 z-50 grid place-items-center bg-black/80 p-4"

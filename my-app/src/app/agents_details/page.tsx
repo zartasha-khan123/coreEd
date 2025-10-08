@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useMemo, useRef, useEffect } from "react"
@@ -13,11 +12,10 @@ export default function ProductsPage() {
   
 
   const searchParams = useSearchParams();                 
-  const initialSearch = (searchParams.get("search") ?? "").trim();
+  const initialSearch = (searchParams.get("search") ?? "").trim(); 
   const [selectedCategory, setSelectedCategory] = useState<string>("All")
   const [searchQuery, setSearchQuery] = useState("")      
   const resultsRef = useRef<HTMLDivElement | null>(null)  
-
   useEffect(() => {
     setSearchQuery(initialSearch);
   }, [initialSearch]);
@@ -121,19 +119,9 @@ export default function ProductsPage() {
                         onClick={() => setSelectedCategory(category)}
                         className={`flex w-full items-center justify-between rounded-lg px-4 py-3 text-left transition-all duration-200 ${
                           selectedCategory === category
-                             ? "text-white shadow-md"
-    : "bg-[rgba(30,30,30,0.6)] text-foreground hover:bg-[rgba(60,60,60,0.8)]"
+                            ? "bg-primary text-primary-foreground shadow-sm"
+                            : "bg-secondary/50 text-foreground hover:bg-secondary"
                         }`}
-                        style={
-  selectedCategory === category
-    ? {
-        background:
-          "linear-gradient(90deg, #a855f7 0%, #9333ea 35%, #7e22ce 100%)",
-        boxShadow:
-          "0 6px 18px rgba(168,85,247,0.45), 0 0 0 1px rgba(255,255,255,0.08) inset",
-      }
-    : {}
-}
                       >
                         <span className="font-medium">{category}</span>
                         <Badge variant={selectedCategory === category ? "secondary" : "outline"} className="ml-2">
