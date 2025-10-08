@@ -63,7 +63,7 @@ const [activeRole, setActiveRole] = React.useState<"client" | "developer" | null
               </span>
                  <span
                 className="text-[20px] font-semibold tracking-[-0.02em] text-purple-500"
-                style={{ fontFamily: "'Darker Grotesque', sans-serif" }} // Apply font directly here
+                style={{ fontFamily: "'Darker Grotesque', sans-serif" }} 
               > CoreHive</span>
             </a>
 
@@ -74,13 +74,13 @@ const [activeRole, setActiveRole] = React.useState<"client" | "developer" | null
                 "rounded-full bg-black/90 text-white",
                 "px-3 py-2",
                 "ring-1 ring-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.4)]",
-                 "font-family: 'Darker Grotesque', sans-serif;" // Apply font here for the nav
+                 "font-family: 'Darker Grotesque', sans-serif;" 
 
               )}
               role="navigation"
               aria-label="Primary"
               onMouseLeave={() => setOpen(null)}
-              style={{ fontFamily: "'Darker Grotesque', sans-serif" }} // Apply font directly here to nav
+              style={{ fontFamily: "'Darker Grotesque', sans-serif" }} 
 
             >
               <ul className="flex items-center gap-1">
@@ -88,7 +88,6 @@ const [activeRole, setActiveRole] = React.useState<"client" | "developer" | null
                   { key: "platform", label: "Platform" , href: "/"},
                   { key: "agents", label: "AI Agents", href: "/#agents" },
                   { key: "solutions", label: "Solutions" , href: "/#profile"},
-                  // { key: "resources", label: "Resources", href: "/resources" },
                   { key: "about", label: "About" ,href:"/about"},
                 ].map((item) => (
                   <li key={item.key}>
@@ -283,7 +282,7 @@ function RightList({
    className = "",
 }: {
   title?: string
-  items: Array<{ label: string; badge?: string; external?: boolean }>
+  items: Array<{ label: string; href?: string; badge?: string; external?: boolean }>
   className?: string
 }) {
   return (
@@ -292,10 +291,11 @@ function RightList({
       <ul className="space-y-[14px]">
         {items.map((it) => (
           <li key={it.label}>
-            <a
-              href="#"
-className={`group flex items-center rounded-xl p-2 pr-3 text-[18px] font-medium text-white/90 hover:bg-white/[0.06] hover:text-white ... ${className}`}
-            >
+             {it.href ? (
+               <Link
+                href={it.href}
+                className={`group flex items-center rounded-xl p-2 pr-3 text-[18px] font-medium text-white/90 hover:bg-white/[0.06] hover:text-white ${className}`}
+              >
               <Check className="mr-2 h-[14px] w-[14px]"/>
              {it.label}
               {it.badge && (
@@ -306,7 +306,11 @@ className={`group flex items-center rounded-xl p-2 pr-3 text-[18px] font-medium 
               {it.external && (
                 <ArrowUpRight className="ml-1 h-4 w-4 opacity-60 transition-opacity group-hover:opacity-100" />
               )}
-            </a>
+            </Link>  ) : (
+               <div className={`group flex items-center rounded-xl p-2 pr-3 text-[18px] font-medium text-white/90 ${className}`}>
+                <Check className="mr-2 h-[14px] w-[14px]" />
+                {it.label}
+              </div>)}
           </li>
         ))}
       </ul>
@@ -345,12 +349,12 @@ function MegaMenus({ open }: { open: MenuKey }) {
             <div className="flex items-start">
               <RightList
                 items={[
-                  { label: "Agentic Platform"},
-                  { label: "Agentic Workflows" },
-                  { label: "Database, Memory & RAG" },
-                  { label: "Large Language Models" },
-                  { label: "Security & Deployment" },
-                  { label: "Integrations" },
+                  { label: "Agentic Platform",  href: "/"},
+                  { label: "Agentic Workflows", href: "/platform" },
+                  { label: "Database, Memory & RAG", href: "/platform" },
+                  { label: "Large Language Models", href: "/platform" },
+                  { label: "Security & Deployment" , href: "/platform"},
+                  { label: "Integrations", href: "/platform" },
                 ]}
                 
               />
@@ -364,7 +368,7 @@ function MegaMenus({ open }: { open: MenuKey }) {
           <div className="grid h-full grid-cols-[minmax(0,1fr)_280px] gap-6">
             <div className="rounded-2xl bg-white/5 p-2 ring-1 ring-white/10">
               <img
-                src="/img1.avif"
+                src="/bg1.jpg"
                 alt="AI Agents preview"
                 className="h-[340px] w-full rounded-xl object-cover object-center"
               />
@@ -379,7 +383,7 @@ function MegaMenus({ open }: { open: MenuKey }) {
                 ]}
               />
               <div>
-               <Link href="/agents"> <CTA>See all agents</CTA></Link>
+               <Link href="/#agents"> <CTA>See all agents</CTA></Link>
               </div>
             </div>
           </div>
@@ -391,7 +395,7 @@ function MegaMenus({ open }: { open: MenuKey }) {
           <div className="grid h-full grid-cols-[minmax(0,1fr)_280px_280px] gap-6">
             <div className="rounded-2xl bg-white/5 p-2 ring-1 ring-white/10">
               <img
-                src="/img1.avif"
+                src="/bg.jpg"
                 alt="Solutions preview"
                 className="h-[340px] w-full rounded-xl object-cover object-center"
               />
@@ -423,37 +427,12 @@ function MegaMenus({ open }: { open: MenuKey }) {
         </Panel>
       )}
 
-      {/* {open === "resources" && (
-        <Panel>
-          <div className="grid h-full grid-cols-[minmax(0,1fr)_280px] gap-6">
-            <div className="rounded-2xl bg-white/5 p-2 ring-1 ring-white/10">
-              <img
-                src="/img1.avif"
-                alt="Resources preview"
-                className="h-[300px] w-full rounded-xl object-cover object-center"
-              />
-            </div>
-            <div className="flex items-start">
-              <RightList
-                items={[
-                  { label: "Webinars", badge: "NEW DATES" },
-                  { label: "Beam Academy" },
-                  { label: "Agentic Insights", badge: "BLOGS" },
-                  { label: "Customers" },
-                  { label: "Changelog" },
-                ]}
-              />
-            </div>
-          </div>
-        </Panel>
-      )} */}
-
       {open === "about" && (
         <Panel>
           <div className="grid grid-cols-[1fr_280px] gap-6">
             <div className="rounded-2xl bg-white/5 p-2 ring-1 ring-white/10">
               <img
-                src="/img1.avif"
+                src="/about.jpg"
                 alt="About preview"
                 className="h-[300px] w-full rounded-xl object-cover object-center"
               />
@@ -512,45 +491,41 @@ function MobileDrawer({
             {/* Each section */}
             <MobileSection
               title="Platform"
-              img="/beam/screenshot-10.png"
+              img="/img1.avif"
               items={[
-                "Agentic Platform",
-                "Agentic Workflows",
-                "Database, Memory & RAG",
-                "Large Language Models",
-                "Security & Deployment",
-                "Integrations",
+    { label: "Agentic Platform", href: "/" },
+    { label: "Agentic Workflows", href: "/" },
+    { label: "Database, Memory & RAG", href: "/" },
+    { label: "Large Language Models", href: "/" },
+    { label: "Security & Deployment", href: "/" },
+    { label: "Integrations", href: "/" },
               ]}
             />
             <MobileSection
               title="AI Agents"
-              img="/beam/screenshot-14.png"
-              items={["Finance & Accounting", "Customer Service", "HR & Recruitment"]}
+              img="/bg1.jpg"
+              items={[{label:"Finance & Accounting",href:"/#agents"}, {label:"Customer Service",href:"/#agents"}, {label:"HR & Recruitment",href:"/#agents"}]}
               cta="See all agents"
             />
             <MobileSection
               title="Solutions"
-              img="/beam/screenshot-12.png"
+              img="/bg.jpg"
               items={[
-                "Startups",
-                "Midsized",
-                "Enterprise",
-                "BPO",
-                "Customer Service",
-                "Financial Services",
-                "Staffing & RPO",
+                {label:"Startups",href:"/#profile"},
+                {label:"Midsized",href:"/#profile"},
+                {label:"Enterprise",href:"/#profile"},
+                {label:"BPO",href:"/#profile"},
+                {label:"Customer Service",href:"/#profile"},
+                {label:"Financial Services",href:"/#profile"},
+                {label:"Staffing & RPO",href:"/#profile"},
               ]}
-              cta="See all industries"
+             cta="See all industries"
             />
-            {/* <MobileSection
-              title="Resources"
-              img="/beam/screenshot-13.png"
-              items={["Webinars", "Beam Academy", "Agentic Insights", "Customers", "Changelog"]}
-            /> */}
+           
             <MobileSection
               title="About"
-              img="/beam/screenshot-14.png"
-              items={["About Us", "Career", "Trust Center", "Contact", "Partnerships", "Workshops", "Demos"]}
+              img="/about.jpg"
+              items={[{label:"About Us",href:"/about"}, {label:"Career",href:"/about"}, {label:"Trust Center",href:"/about"}, {label:"Contact",href:"/about"}, {label:"Partnerships",href:"/about"},{label:"Workshops",href:"/about"},{label:"Demos",href:"/about"}]}
             />
           </div>
 
@@ -562,10 +537,10 @@ function MobileDrawer({
               href="/signUp"
               className="rounded-full px-[14px] py-[10px] text-[14px] font-semibold text-white"
               style={{
-                background: "linear-gradient(90deg, #4F8BFF 0%, #2EA4FF 35%, #2BD0FF 100%)",
-                boxShadow:
-                  "0 10px 28px rgba(47,140,255,0.55), 0 0 0 1px rgba(255,255,255,0.10) inset, 0 0 20px rgba(43,208,255,0.35)",
-              }}
+               background: "linear-gradient(90deg, #a855f7 0%, #9333ea 35%, #7e22ce 100%)",
+    boxShadow:
+      "0 10px 28px rgba(168, 85, 247, 0.55), 0 0 0 1px rgba(255,255,255,0.10) inset, 0 0 20px rgba(126, 34, 206, 0.35)",
+  }}
             >
               DashBaord
             </a>
@@ -584,7 +559,7 @@ function MobileSection({
 }: {
   title: string
   img: string
-  items: string[]
+  items:  Array<{ label: string; href: string }>
   cta?: string
 }) {
   const [open, setOpen] = React.useState(false)
@@ -608,14 +583,14 @@ function MobileSection({
           </div>
           <ul className="grid grid-cols-1 gap-2">
             {items.map((it) => (
-              <li key={it}>
-                <a
-                  href="#"
+              <li key={it.label}>
+               <Link
+          href={it.href}
                   className="flex items-center rounded-xl p-2 text-[15px] text-white/90 hover:bg-white/[0.06]"
                 >
                   <IconBadge />
-                  {it}
-                </a>
+                  {it.label}
+                </Link>
               </li>
             ))}
           </ul>
